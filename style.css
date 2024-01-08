@@ -3,38 +3,28 @@ body {
 }
 
 .container {
-    width: 80%;
-    margin: 0 auto;
     text-align: center;
     padding-top: 50px;
 }
 
-input[type="text"] {
-    width: 60%;
+#inputField {
+    width: 300px;
     padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
-    border-radius: 4px;
 }
 
-button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+#searchButton {
+    padding: 10px;
 }
 
-button:hover {
-    background-color: #0056b3;
+#loading {
+    display: none;
 }
 
-#urlInfo {
-    margin-top: 20px;
-    text-align: left;
+.hidden {
+    display: none;
 }
 
-h1 {
-    text-align: center;
+ul {
+    list-style-type: none;
+    padding: 0;
 }

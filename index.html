@@ -9,10 +9,26 @@
 <body>
     <h1>GeFei</h1>
     <div class="container">
-        <input type="text" id="urlInput" placeholder="输入框预留，Enter a URL...">
-        <button onclick="displayUrlInfo()">Submit</button>
-        <div id="urlInfo"></div>
+        <input type="text" id="domainName" placeholder="输入域名名称">
+        <select id="domainSuffix">
+            <option value="com">.com</option>
+            <option value="net">.net</option>
+            <option value="org">.org</option>
+            <option value="me">.me</option>
+            <option value="xyz">.xyz</option>
+            <option value="info">.info</option>
+            <option value="io">.io</option>
+            <option value="co">.co</option>
+            <option value="ai">.ai</option>
+            <option value="biz">.biz</option>
+            <option value="us">.us</option>
+        </select>
+        <button id="searchButton">查询</button>
+        <div id="loading" class="hidden">加载中...</div>
+        <ul id="results"></ul>
     </div>
     <script src="script.js"></script>
+
+
 </body>
 </html>
