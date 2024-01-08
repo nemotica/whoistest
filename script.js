@@ -3,23 +3,17 @@ document.getElementById('searchButton').addEventListener('click', function() {
     const domainSuffix = document.getElementById('domainSuffix').value;
     if (!domainName.trim()) return; // 确保域名名称不为空
     toggleLoading(true);
-    const fullDomain = `${domainName}.${domainSuffix}`;
-    fetchData(fullDomain);
+    fetchData(domainName, domainSuffix);
 });
-
-// 其余函数保持不变
-
-
-
 
 function toggleLoading(isLoading) {
     const loadingElement = document.getElementById('loading');
     loadingElement.style.display = isLoading ? 'block' : 'none';
 }
 
-function fetchData(input) {
+function fetchData(domainName, domainSuffix) {
     // 伪代码 - 实际上需要根据您的API调整
-    fetch(`您的API地址?query=${input}`)
+    fetch(`https://whois.freeaiapi.xyz/?name=${encodeURIComponent(domainName)}&suffix=${encodeURIComponent(domainSuffix)}`)
         .then(response => response.json())
         .then(data => {
             toggleLoading(false);
@@ -51,4 +45,3 @@ function displayError() {
     const resultsElement = document.getElementById('results');
     resultsElement.innerHTML = `<li>接口异常，请稍后再试</li>`;
 }
-
