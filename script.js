@@ -21,7 +21,8 @@ function jsonpRequest(domainName, domainSuffix) {
         delete window[callbackName];
     };
 
-    script.src = `https://whois.freeaiapi.xyz/?name={encodeURIComponent($domainName)}&suffix={encodeURIComponent($domainSuffix)}&callback=${callbackName}`;
+    //script.src = `https://whois.freeaiapi.xyz/?name={encodeURIComponent($domainName)}&suffix={encodeURIComponent($domainSuffix)}&callback=${callbackName}`;
+    script.src = `https://whois.freeaiapi.xyz/?name=${domainName}&suffix=${domainSuffix}`;
     document.body.appendChild(script);
 }
 
