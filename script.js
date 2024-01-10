@@ -3,7 +3,7 @@ document.getElementById('searchButton').addEventListener('click', function() {
     const domainSuffix = document.getElementById('domainSuffix').value;
     if (!domainName.trim()) return; // 确保域名名称不为空
     toggleLoading(true);
-    fetchData(domainName, domainSuffix);
+    jsonpRequest(domainName, domainSuffix);
 });
 
 function toggleLoading(isLoading) {
@@ -11,22 +11,18 @@ function toggleLoading(isLoading) {
     loadingElement.style.display = isLoading ? 'block' : 'none';
 }
 
-function fetchData(domainName, domainSuffix) {
-    // 伪代码 - 实际上需要根据您的API调整
-    fetch(`https://whois.freeaiapi.xyz/?name=${encodeURIComponent(domainName)}&suffix=${encodeURIComponent(domainSuffix)}`)
-        .then(response => response.json())
-        .then(data => {
-            toggleLoading(false);
-            if (data.status === 'OK') {
-                displayData(data);
-            } else {
-                displayError();
-            }
-        })
-        .catch(() => {
-            toggleLoading(false);
-            displayError();
-        });
+function jsonpRequest(domainName, domainSuffix) {
+    const script = document.createElement('script');
+    const callbackName = 'jsonpCallback';
+
+    window[callbackName] = function(data) {
+        displayData(data);
+        document.body.removeChild(script);
+        delete window[callbackName];
+    };
+
+    script.src = `https://whois.freeaiapi.xyz/?name=${encodeURIComponent(domainName)}&suffix=${encodeURIComponent(domainSuffix)}&callback=${callbackName}`;
+    document.body.appendChild(script);
 }
 
 function displayData(data) {
@@ -45,3 +41,4 @@ function displayError() {
     const resultsElement = document.getElementById('results');
     resultsElement.innerHTML = `<li>接口异常，请稍后再试</li>`;
 }
+
