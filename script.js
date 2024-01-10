@@ -1,8 +1,9 @@
 document.getElementById('searchButton').addEventListener('click', function() {
-    const input = document.getElementById('inputField').value;
-    if (!input) return;
+    const domainName = document.getElementById('domainName').value;
+    const domainSuffix = document.getElementById('domainSuffix').value;
+    if (!domainName.trim()) return; // 确保域名名称不为空
     toggleLoading(true);
-    fetchData(input); //还是用fetchData的方式
+    jsonpRequest(domainName, domainSuffix);
 });
 
 function toggleLoading(isLoading) {
