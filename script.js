@@ -3,7 +3,7 @@ document.getElementById('searchButton').addEventListener('click', function() {
     const domainSuffix = document.getElementById('domainSuffix').value;
     if (!domainName.trim()) return; // 确保域名名称不为空
     toggleLoading(true);
-    jsonpRequest(domainName, domainSuffix);
+    fetchData(domainName, domainSuffix);
 });
 
 function toggleLoading(isLoading) {
@@ -12,7 +12,7 @@ function toggleLoading(isLoading) {
 }
 
 function fetchData(input) {
-    // 伪代码 - 实际上需要根据您的API调整
+    // API
     fetch(`https://whois.freeaiapi.xyz/?name=${domainName}&suffix=${domainSuffix}`)
         .then(response => response.json())
         .then(data => {
