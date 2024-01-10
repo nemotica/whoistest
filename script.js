@@ -13,7 +13,7 @@ function toggleLoading(isLoading) {
 
 function fetchData(input) {
     // API
-    fetch(`https://whois.freeaiapi.xyz/?name=${domainName}&suffix=${domainSuffix}`)
+    fetch(`https://whois.freeaiapi.xyz/?name=${encodeURIComponent(domainName)}&suffix=${encodeURIComponent(domainSuffix)}`)
         .then(response => response.json())
         .then(data => {
             toggleLoading(false);
