@@ -42,3 +42,6 @@ function displayError() {
     resultsElement.innerHTML = `<li>接口异常，请稍后再试</li>`;
 }
 
+function empty {
+    
+}
