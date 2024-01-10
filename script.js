@@ -2,7 +2,7 @@ document.getElementById('searchButton').addEventListener('click', function() {
     const input = document.getElementById('inputField').value;
     if (!input) return;
     toggleLoading(true);
-    fetchData(input);
+    fetchData(input); //还是用fetchData的方式
 });
 
 function toggleLoading(isLoading) {
