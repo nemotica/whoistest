@@ -12,7 +12,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>{children}
-      <div>nothing else</>
+      <div>nothing else but</div>
       </body>
     </html>
   )
