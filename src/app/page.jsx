@@ -23,7 +23,7 @@ const Home = () => {
         const response = await fetch(`/api/whois?domainName=${domainName}&domainSuffix=${domainSuffix}`, {
           method: "GET",
           headers:{
-            Accept: "applicaiton/json",
+            Accept: "application/json",
           },
         });
 
