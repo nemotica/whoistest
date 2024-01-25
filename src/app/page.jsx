@@ -30,20 +30,6 @@ const Home = () => {
         // 设置数据
         const res = await response.json();
         setData(res.data);
-        
-        // const dmInfo = data.json();
-        // console.log("typeof:",typeof(dmInfo));
-        // // 如果响应有效
-        // if (response) { 
-        //   // 解析响应内容为 JSON 格式
-        //   const res = await response.json();
-          
-        //   // 设置数据
-        //   setData(res.json()};
-          
-        //   //调试信息
-        //   //console.log(data);
-        // }
       }
       catch (error) {
         //console输出错误信息
