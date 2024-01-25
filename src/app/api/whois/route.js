@@ -22,7 +22,7 @@ export async function GET (request) {
 
   } catch (error) {
     // Return a new response with the error message
-    return new Response(JSON.stringify({ error: "服务器错误，无法获取域名信息！" }), {
+    return new Response(JSON.stringify({ error: "服务器错误，无法获取该域名信息！" }), {
       status: 500,
       headers: {
         'Content-Type': 'application/json'
