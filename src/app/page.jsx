@@ -43,9 +43,9 @@ const Home = () => {
       <div className={styles.center}>
         <Image
           className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
+          src="/WhoIsThisWebsite.svg"
+          alt="Whois this Website"
+          width={400}
           height={37}
           priority
         />

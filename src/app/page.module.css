@@ -109,6 +109,10 @@
   position: relative;
 }
 
+.logotitle {
+  display:flex
+}
+
 /*0117新增*/
 .formContainer {
   display: flex;
