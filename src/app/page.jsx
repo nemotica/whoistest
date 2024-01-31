@@ -3,43 +3,27 @@ import Image from 'next/image'
 import styles from './page.module.css'
 import React, { useState } from 'react' //使用 React Hooks，用于在函数中管理状态
 import DomainInfoCard from "@/components/domainInfoCard/domainInfoCard";
-
+//import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 const Home = () => {
-  
   const [domain, setDomain] = useState('');
-  const [data, setData] = useState(''); 
+  const router = useRouter();
 
+  //每当输入框更新，则更新 domain 字段
   const handleInputChange = (e) => {
       setDomain(e.target.value);
   };
 
   const handleSubmit = async (e) => {
-      e.preventDefault(); // 阻止默认表单提交行为
-      
-      const [domainName, domainSuffix] = domain.split('.');
-
-      try {
-        const response = await fetch(`/api/whois?domainName=${domainName}&domainSuffix=${domainSuffix}`, {
-          method: "GET",
-          headers:{
-            Accept: "application/json",
-          },
-        });
-
-        // 设置数据
-        const res = await response.json();
-        setData(res.data);
-      }
-      catch (error) {
-        //console输出错误信息
-        console.error('Error fetching data:', error);
-      }
-  };
+    //禁止 form 组件的默认提交事件，方便执行调用第三方 API 逻辑
+    e.preventDefault();
+    // 使用 useRouter 进行页面跳转，并传递查询参数
+    router.push(`/searchResult?domain=${domain}`)
+  };  
 
   return (
     <main className={styles.main}>
-      {/* logo */}
       <div className={styles.center}>
         <Image
           className={styles.logo}
@@ -57,12 +41,6 @@ const Home = () => {
         <button type='button' onClick={handleSubmit}>查询</button>
       </form>
 
-      {/* 搜索结果 */}
-      {data && (
-        <div className={styles.responseContainer}>
-        <DomainInfoCard data={data}/>
-        </div>
-      )}
     </main>
   )
 };
