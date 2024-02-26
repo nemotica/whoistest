@@ -1,0 +1,26 @@
+/* src/components/searchHistoryCard/searchHistoryCard.module.css */
+.historyContainer {
+    margin-top: 20px;
+  }
+  
+  .historyList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Adjust based on preference */
+  }
+  
+  .historyItem {
+    background-color: #f0f0f0; /* Light grey background */
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #333; /* Dark text color for contrast */
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+  }
+  
+  .historyItem:hover {
+    background-color: #e2e2e2; /* Slightly darker on hover */
+    color: #000; /* Black text on hover */
+  }
+  

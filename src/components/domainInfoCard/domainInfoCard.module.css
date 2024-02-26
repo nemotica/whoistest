@@ -1,7 +1,12 @@
 .resultContainer {
     display:flex; 
     flex-direction: column;
-    
+    margin-top:10px;
+    padding:10px;
+    width: 570px;
+    background-color:#F5F5F5;
+    border:#BDBDBD;
+    border-radius: 5px;
 }
 
 .domainDesc {

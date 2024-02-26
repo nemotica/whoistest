@@ -1,6 +1,6 @@
 import styles from "./domainInfoCard.module.css"
 
-const DomainInfoCard = ({ data }) => {
+const DomainInfoCard = ({ data, iscache, expirytime }) => {
     if (data) {
         //格式化处理域名 available 字段值
         const available_tostring = data.available ? "可注册" : "已被注册";
@@ -17,6 +17,8 @@ const DomainInfoCard = ({ data }) => {
                     <p className={styles.domainDescItem}>域名后缀：{data.suffix}</p>
                     <p className={styles.domainDescItem}>注册时间：{data.creation_datetime.toString().slice(0,10)}</p>
                     <p className={styles.domainDescItem}>失效时间：{data.expiry_datetime.toString().slice(0,10)}</p>
+                    <p className={styles.domainDescItem}>命中缓存：{iscache.toString()}</p>
+                    
                 </div>
             </div>
         )

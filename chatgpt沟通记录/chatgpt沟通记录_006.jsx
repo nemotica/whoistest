@@ -1,27 +1,36 @@
+## 需求描述
+1. 现有逻辑：用户输入域名信息后，鼠标点击查询按钮可以触发搜索；
+2. 预期逻辑：用户输入域名信息后，敲击键盘 enter 按键也可以触发搜索
+
+## 约束条件
+1. 使用 next.js14 框架和 app router 方案
+2. 我提供相关代码，并给出对应的异常现象和报错信息；
+3. 请你指出错误原因并提供修改方案的代码
+
+
+## 代码参考
+1. src/app/searchResult/page.jsx
+// src/app/searchResult/page.jsx
 "use client"
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect,useCallback } from 'react';
 import DomainInfoCard from "@/components/domainInfoCard/domainInfoCard";
 import SearchBox from "@/components/searchBox/searchBox";
 import styles from './page.module.css';
-import { useSearchParams } from 'next/navigation';
-import { SearchHistory } from '@/lib/models';
-import { connectToDb } from '@/lib/utils';
-
+import { useRouter, useSearchParams } from 'next/navigation';
 
 const SearchResult = () => {
     const [data, setData] = useState('');
     const [iscache, setIscache] = useState(false);
-
     // 从 URL 获取查询参数
     const domain = useSearchParams().get('domain');
     
-    // 函数 检查缓存是否存在及是否过期
+    // 检查缓存是否存在及是否过期
     const checkCache = (domain) => {
         const cache = localStorage.getItem(domain);
         if (cache) {
             const { expiry, data } = JSON.parse(cache);
             if (expiry > new Date().getTime()) {
-                return data; // 如果还没有过期，返回缓存数据
+                return data; // 返回缓存数据
             } else {
                 localStorage.removeItem(domain); // 清除过期缓存
             }
@@ -30,6 +39,7 @@ const SearchResult = () => {
     };
 
     // 获取域名信息，异步函数
+    //const fetchDomainData = async (domain) => {
     const fetchDomainData = useCallback(async (domain) => {
         const cachedData = checkCache(domain);
         if (cachedData){
@@ -57,38 +67,10 @@ const SearchResult = () => {
     //useEffect函数用于处理组件的副作用，特别是在组件挂载（加载）和更新时执行的操作。在此特定场景中，它被用于在页面加载时根据 URL 中的查询参数（`domainName` 和 `domainSuffix`）来获取和显示域名的信息。
     //[name, suffix]**依赖项数组**：`useEffect` 的第二个参数是一个依赖项数组。在这个例子中，它包含了 `domainName` 和 `domainSuffix`。这意味着只有当这两个值发生变化时，`useEffect` 里面的代码才会重新执行。在首次加载页面时，由于这两个值从未设置过，`useEffect` 会默认执行一次。
     useEffect(() => {
-        
-        // // 函数定义：新增一条数据到数据库
-        //const saveSearchHistory = async (domain) => {
-        //     console.log("I'm also here!");
-        //     try {
-        //         console.log("ready to connect",);
-        //         //await connectToDb();
-        //         console.log("connected to db!");
-        //         const newSearch = new SearchHistory({ domain });
-        //         console.log("new schema!");
-        //         await newSearch.save();
-        //         //console.log("saved to db");
-        //     } catch (error) {
-        //         throw new Error("Something went wrong saving db!");
-        //     }
-        // }
-        const saveSearchHistory = async (domain) => {
-            const response = await fetch(`/api/addSearchHistory?domain=${domain}`, {
-                method: "POST",
-                headers: {
-                    Accept: "application/json",
-                },
-            });
-            const res = await response.json();
-            //console.log(res.toString());
-        }
-
         if (domain) {
             fetchDomainData(domain);
-            saveSearchHistory(domain);
         }
-    }, [domain, fetchDomainData]); //当 domain 初始化或发生变化的时候才执行 useEffect 中的内容
+    }, [domain, fetchDomainData]);//当 domain 初始化或发生变化的时候才执行 useEffect 中的内容；
 
 
     return (
@@ -96,7 +78,7 @@ const SearchResult = () => {
             <SearchBox domain={domain} fetchDomainData={fetchDomainData} />
             {data && (
                 <div className={styles.responseContainer}>
-                    <DomainInfoCard data={data} iscache={iscache}/>
+                    <DomainInfoCard data={data} iscache={iscache} />
                 </div>
             )}
         </main>
@@ -105,4 +87,9 @@ const SearchResult = () => {
 
 export default SearchResult;
 
+## 任务描述
+请按照需求描述，修改以上代码并给出必要说明；
 
+----
+应该没问题
+https://chat.openai.com/share/39ce1969-b77c-4c8f-915b-007311bdf5f1
