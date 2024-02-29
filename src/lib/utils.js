@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { connect }  from "mongoose";
 
 const connection = {}; // 初始化一个空对象（empty object）
 

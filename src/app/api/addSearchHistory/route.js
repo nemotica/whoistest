@@ -1,7 +1,6 @@
 import { SearchHistory } from "@/lib/models" 
 import { connectToDb } from "@/lib/utils";
 import { NextResponse } from "next/server";
-//import mongoose from "mongoose";
 
 export const POST = async (request) => {
 

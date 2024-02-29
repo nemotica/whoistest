@@ -41,7 +41,6 @@ const Home = () => {
       });
       if (response.ok) {
         const data = await response.json();
-        //console.log(data," it's here!");
         setSearchHistory(data); // 假设返回的是一个数组
       }
     };
